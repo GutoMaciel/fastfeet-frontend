@@ -1,5 +1,6 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+import Route from './Route';
 
 import SignIn from '../pages/SignIn';
 
@@ -24,20 +25,20 @@ export default function Routes() {
     <Switch>
       <Route path="/" exact component={SignIn} />
 
-      <Route path="/deliverymans" component={ListDeliveryman} isPravite />
-      <Route path="/deliverymans/:id" component={EditDeliveryman} isPravite />
-      <Route path="/deliverymans/new" component={NewDeliveryman} isPravite />
+      <Route path="/deliverymans" component={ListDeliveryman} isPrivate />
+      <Route path="/deliverymans/:id" component={EditDeliveryman} isPrivate />
+      <Route path="/deliverymans/new" component={NewDeliveryman} isPrivate />
 
-      <Route path="/packs" component={ListPack} isPravite />
-      <Route path="/packs/:id" component={EditPack} isPravite />
-      <Route path="/packs/details/:id" component={PackDetails} isPravite />
-      <Route path="/packs/new" component={NewPack} isPravite />
+      <Route path="/packs" component={ListPack} isPrivate />
+      <Route path="/packs/:id" component={EditPack} isPrivate />
+      <Route path="/packs/details/:id" component={PackDetails} isPrivate />
+      <Route path="/packs/new" component={NewPack} isPrivate />
 
-      <Route path="/problems" component={ListProblem} isPravite />
+      <Route path="/problems" component={ListProblem} isPrivate />
       <Route
         path="/problems/details/:id"
         component={ProblemDetails}
-        isPravite
+        isPrivate
       />
 
       <Route path="/recipients/:id" component={EditRecipient} isPravite />
