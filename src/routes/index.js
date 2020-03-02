@@ -42,7 +42,7 @@ export default function Routes() {
       />
 
       <Route path="/recipients/:id" component={EditRecipient} isPravite />
-      <Route path="/recipients" component={ListRecipient} isPravite />
+      <Route path="/recipients" component={ListRecipient} isPrivate />
       <Route path="/recipients/new" component={NewRecipient} isPravite />
     </Switch>
   );
