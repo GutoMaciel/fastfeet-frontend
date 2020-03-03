@@ -12,6 +12,7 @@ export default function List() {
           <span>Recipient Management</span>
           <aside>
             <Link to="/recipient/new">NEW</Link>
+            <input type="search" placeholder="Search" />
           </aside>
         </div>
       </Toolbar>

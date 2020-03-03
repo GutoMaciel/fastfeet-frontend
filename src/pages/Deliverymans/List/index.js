@@ -12,6 +12,7 @@ export default function List() {
           <span>Deliverymans Management</span>
           <aside>
             <Link to="/deliveryman/new">NEW</Link>
+            <input type="search" placeholder="Search" />
           </aside>
         </div>
       </Toolbar>

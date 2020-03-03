@@ -33,6 +33,15 @@ export const Container = styled.div`
     border: none;
   }
 
+  input {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 10px;
+    width: 220px;
+    background: #fff;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+
   button {
     display: flex;
     align-items: center;

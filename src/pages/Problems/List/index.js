@@ -9,9 +9,6 @@ export default function List() {
       <Toolbar>
         <div>
           <span>Problems</span>
-          <aside>
-            <p>Actions</p>
-          </aside>
         </div>
       </Toolbar>
     </>
