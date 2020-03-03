@@ -27,12 +27,12 @@ export default function Routes() {
 
       <Route path="/deliverymans" component={ListDeliveryman} isPrivate />
       <Route path="/deliverymans/:id" component={EditDeliveryman} isPrivate />
-      <Route path="/deliverymans/new" component={NewDeliveryman} isPrivate />
+      <Route path="/deliveryman/new" component={NewDeliveryman} isPrivate />
 
       <Route path="/packs" component={ListPack} isPrivate />
       <Route path="/packs/:id" component={EditPack} isPrivate />
       <Route path="/packs/details/:id" component={PackDetails} isPrivate />
-      <Route path="/packs/new" component={NewPack} isPrivate />
+      <Route path="/pack/new" component={NewPack} isPrivate />
 
       <Route path="/problems" component={ListProblem} isPrivate />
       <Route
@@ -41,9 +41,9 @@ export default function Routes() {
         isPrivate
       />
 
-      <Route path="/recipients/:id" component={EditRecipient} isPravite />
+      <Route path="/recipients/:id" component={EditRecipient} isPrivate />
       <Route path="/recipients" component={ListRecipient} isPrivate />
-      <Route path="/recipients/new" component={NewRecipient} isPravite />
+      <Route path="/recipient/new" component={NewRecipient} isPrivate />
     </Switch>
   );
 }

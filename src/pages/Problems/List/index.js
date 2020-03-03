@@ -1,7 +1,19 @@
 import React from 'react';
+// import api from '~/services/api';
 
-// import { Container } from './styles';
+import Toolbar from '~/components/Toolbar';
 
 export default function List() {
-  return <div />;
+  return (
+    <>
+      <Toolbar>
+        <div>
+          <span>Problems</span>
+          <aside>
+            <p>Actions</p>
+          </aside>
+        </div>
+      </Toolbar>
+    </>
+  );
 }
