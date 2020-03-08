@@ -13,6 +13,7 @@ export const Table = styled.table`
   font-size: 16px;
   width: 100%;
   text-align: left;
+
   thead {
     tr {
       font-size: 18px;
