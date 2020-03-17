@@ -8,12 +8,15 @@ import ActionContent from '~/components/ActionContent';
 import DefaultTable from '~/components/DefaultTable';
 
 export default function List() {
+  const [name, setName] = useState('');
   const [recipients, setRecipients] = useState([]);
 
   useEffect(() => {
     async function getRecipients() {
       try {
-        const response = await api.get('recipients');
+        const response = await api.get('recipients', {
+          params: { name },
+        });
 
         setRecipients(response.data);
       } catch (err) {
@@ -22,7 +25,7 @@ export default function List() {
     }
 
     getRecipients();
-  }, []);
+  }, [name]);
 
   return (
     <>
@@ -31,7 +34,11 @@ export default function List() {
           <span>Recipient Management</span>
           <aside>
             <Link to="/recipient/new">NEW</Link>
-            <input type="search" placeholder="Search" />
+            <input
+              type="search"
+              placeholder="Search"
+              onChange={e => setName(e.target.value)}
+            />
           </aside>
         </div>
       </Toolbar>

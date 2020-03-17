@@ -8,12 +8,15 @@ import ActionContent from '~/components/ActionContent';
 import DefaultTable from '~/components/DefaultTable';
 
 export default function List() {
+  const [name, setName] = useState('');
   const [deliverymans, setDeliverymans] = useState([]);
 
   useEffect(() => {
     async function getDeliverymans() {
       try {
-        const response = await api.get('deliveryman');
+        const response = await api.get('deliveryman', {
+          params: { name },
+        });
 
         setDeliverymans(response.data);
       } catch (err) {
@@ -22,7 +25,7 @@ export default function List() {
     }
 
     getDeliverymans();
-  }, []);
+  }, [name]);
 
   return (
     <>
@@ -31,7 +34,11 @@ export default function List() {
           <span>Deliverymans Management</span>
           <aside>
             <Link to="/deliveryman/new">NEW</Link>
-            <input type="search" placeholder="Search" />
+            <input
+              type="search"
+              placeholder="Search"
+              onChange={e => setName(e.target.value)}
+            />
           </aside>
         </div>
       </Toolbar>
