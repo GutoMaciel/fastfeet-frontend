@@ -4,6 +4,17 @@ This is the front-end of the FastFeet web application.
 
 The FastFeet is an application that helps companies that work with logistics and deliveries. In the application, it is possible to manage deliverymans, addresses, orders and problems that occur with deliveries, such as delays, losses and so on.
 
+## Getting Started
+1. Clone the repository
+2. Run ``yarn`` at your terminal to install the dependencies
+3. Start the server runnning ``yarn start``
+
+## Questions?
+Send me a message at the [LinkedIn](https://www.linkedin.com/in/gustavomaciel1/) with any questions.
+
+## Back-end:
+To access the front-end repository, [click here](https://github.com/GutoMaciel/fastfeet-backend).
+
 ### Login Page
 ![app images](https://gustavomaciel.me/wp-content/uploads/2020/05/Screen-Shot-2020-05-26-at-12.24.25.png "Login Page")
 
