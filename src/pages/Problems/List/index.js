@@ -5,9 +5,14 @@ import api from '~/services/api';
 import Toolbar from '~/components/Toolbar';
 import ActionContent from '~/components/ActionContent';
 import DefaultTable from '~/components/DefaultTable';
+// import ActionMenu from '~/components/ActionMenu';
+import ProblemModal from '~/components/ProblemModal';
 
 export default function List() {
   const [problems, setProblems] = useState([]);
+  const [visible, setVisible] = useState(false);
+  const [problemId, setProblemId] = useState('');
+  const [problemDetail, setProblemDetail] = useState({});
 
   useEffect(() => {
     async function getProblems() {
@@ -19,9 +24,15 @@ export default function List() {
         toast.error('Error');
       }
     }
-
     getProblems();
   }, []);
+
+  // function handleProblemChange(id) {}
+
+  // function handleDetails(problem) {
+  //   setProblemDetail(problem);
+  //   setVisible(true);
+  // }
 
   return (
     <>
@@ -34,7 +45,7 @@ export default function List() {
         <DefaultTable>
           <thead>
             <tr>
-              <th>Delivery</th>
+              <th>Delivery ID</th>
               <th>Problem</th>
               <th>Actions</th>
             </tr>
@@ -44,12 +55,37 @@ export default function List() {
               <tr key={problem.id}>
                 <td>#{problem.package_id}</td>
                 <td>{problem.description}</td>
-                <td>...</td>
+                <td>
+                  <button
+                    type="button"
+                    problem={problemDetail}
+                    id={problem.id}
+                    onClick={() => {
+                      setProblemDetail(problem);
+                      // setProblemId(problem.package_id);
+                      setVisible(true);
+                    }}
+                  >
+                    More
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </DefaultTable>
       </ActionContent>
+      <ProblemModal
+        visible={visible}
+        // problem_id={problemId}
+        hide={() => setVisible(false)}
+        problem={problemDetail}
+      />
+      {/* <ActionMenu
+        visible={visible}
+        problem_id={problemId}
+        hide={() => setVisible(false)}
+        handleProblemChange={handleProblemChange}
+      /> */}
     </>
   );
 }

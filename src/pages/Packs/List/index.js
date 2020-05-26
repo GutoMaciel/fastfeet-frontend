@@ -54,7 +54,7 @@ export default function List() {
               <th>Deliveryman</th>
               <th>City</th>
               <th>State</th>
-              <th>Status</th>
+              {/* <th>Status</th> */}
               <th>Actions</th>
             </tr>
           </thead>
@@ -67,8 +67,10 @@ export default function List() {
                 <td>{delivery.deliveryman.name}</td>
                 <td>{delivery.recipient.city}</td>
                 <td>{delivery.recipient.state}</td>
-                <td>Status</td>
-                <td>...</td>
+                {/* <td>Status</td> */}
+                <td>
+                  <Link to={`pack/${delivery.id}`}>More</Link>
+                </td>
               </tr>
             ))}
           </tbody>

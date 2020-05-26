@@ -26,11 +26,11 @@ export default function Routes() {
       <Route path="/" exact component={SignIn} />
 
       <Route path="/deliverymans" component={ListDeliveryman} isPrivate />
-      <Route path="/deliverymans/:id" component={EditDeliveryman} isPrivate />
+      <Route path="/deliveryman/edit/:id" component={EditDeliveryman} isPrivate />
       <Route path="/deliveryman/new" component={NewDeliveryman} isPrivate />
 
       <Route path="/packs" component={ListPack} isPrivate />
-      <Route path="/packs/:id" component={EditPack} isPrivate />
+      <Route path="/pack/:id" component={EditPack} isPrivate />
       <Route path="/packs/details/:id" component={PackDetails} isPrivate />
       <Route path="/pack/new" component={NewPack} isPrivate />
 
@@ -41,7 +41,7 @@ export default function Routes() {
         isPrivate
       />
 
-      <Route path="/recipients/:id" component={EditRecipient} isPrivate />
+      <Route path="/recipient/edit/:id" component={EditRecipient} isPrivate />
       <Route path="/recipients" component={ListRecipient} isPrivate />
       <Route path="/recipient/new" component={NewRecipient} isPrivate />
     </Switch>

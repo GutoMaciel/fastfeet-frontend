@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 // export const Container = styled.div`
-//   height: 630px;
+//   /* padding: 50px; */
+//   /* margin: 20px; */
+//   /* height: 630px;
 //   overflow: scroll;
 //   overflow-x: hidden;
-//   overflow-y: visible;
+//   overflow-y: visible; */
 // `;
 
 export const Table = styled.table`
@@ -13,6 +15,7 @@ export const Table = styled.table`
   font-size: 16px;
   width: 100%;
   text-align: left;
+  margin: 10px;
 
   thead {
     tr {
@@ -36,11 +39,12 @@ export const Table = styled.table`
     button {
       border: none;
       background: none;
-      color: #ee4d64;
+      color: #7159c1;
       font-weight: bold;
     }
   }
   tbody tr a {
     color: #4d85ee;
+    font-weight: bold;
   }
 `;

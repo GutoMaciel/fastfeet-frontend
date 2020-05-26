@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
-import { Form, Input } from '@rocketseat/unform';
 import { toast } from 'react-toastify';
-// import AsyncSelect from 'react-select/async';
-import Select from 'react-select/async';
+import AsyncSelect from 'react-select/async';
 
 import history from '~/services/history';
 
@@ -13,64 +11,80 @@ import api from '~/services/api';
 import Toolbar from '~/components/Toolbar';
 import ActionContent from '~/components/ActionContent';
 
-const schema = Yup.object().shape({
-  recipient_id: Yup.number().required(),
-  deliveryman_id: Yup.number().required(),
-  product: Yup.string().required(),
-});
+// const schema = Yup.object().shape({
+//   recipient_id: Yup.number().required(),
+//   deliveryman_id: Yup.number().required(),
+//   product: Yup.string().required(),
+// });
 
 export default function New() {
-  const [recipientName, setRecipientName] = useState('');
-  const [recipientSelected, setRecipientSelected] = useState(null);
-  const [deliverymanName, setDeliverymanName] = useState(null);
-  const [deliverymanSelected, setDeliverymanSelected] = useState(null);
-  const [product, setProduct] = useState(null);
+  const [recipient_id, setRecipientId] = useState(0);
+  const [deliveryman_id, setDeliverymanId] = useState(0);
 
-  async function loadRecipients() {
-    const response = await api.get(`recipients?name=${recipientName}`);
+  const [inputRecipient, setRecipientInput] = useState('');
+  const [inputDman, setDmanInput] = useState('');
+  const [inputProduct, setProductInput] = useState('');
 
-    return response.data.rows;
+
+  async function loadRecipients(inputValue) {
+    try {
+      const response = await api.get('recipients');
+
+      const options = response.data.map((recipient) => ({
+        ...recipient,
+        value: recipient_id,
+        label: recipient.name,
+      }));
+
+      return options.filter((d) =>
+        d.label.toLowerCase().includes(inputValue.toLowerCase())
+      );
+    } catch (error) {
+      return [];
+    }
   }
 
-  async function loadDeliverymans() {
-    const response = await api.get(`deliveryman?name=${deliverymanName}`);
+  async function loadDeliverymans(inputValue) {
+    try {
+      const response = await api.get('deliveryman');
 
-    return response.data.rows;
+      const options = response.data.map((deliveryman) => ({
+        ...deliveryman,
+        value: deliveryman_id,
+        label: deliveryman.name,
+      }));
+
+      return options.filter((f) =>
+        f.label.toLowerCase().includes(inputValue.toLowerCase())
+      );
+    } catch (error) {
+      return [];
+    }
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      await schema.validate(
-        {
-          recipient_id: recipientSelected,
-          deliveryman_id: deliverymanSelected,
-          product,
-        },
-        {
-          abortEarly: false,
-        }
-      );
-    } catch (err) {
-      err.inner.forEach(error => {
-        toast.error(error.message);
+      await api.post('/delivery', {
+        deliveryman_id: inputDman,
+        recipient_id: inputRecipient,
+        product: inputProduct,
       });
-      return;
-    }
 
-    try {
-      await api.post('delivery', {
-        recipient_id: recipientSelected,
-        deliveryman_id: deliverymanSelected,
-        product,
-      });
-      toast.success('Delivery subscribed with success.');
+      toast.success('Success.')
       history.push('/packs');
-    } catch (err) {
-      toast.error(err.response.data.error);
+
+    } catch (error) {
+      toast.error('Error.')
     }
   }
+
+  const newDeliverData = {
+    recipientId: inputRecipient,
+    deliverymanId: inputDman,
+    product: inputProduct,
+  };
 
   return (
     <>
@@ -81,41 +95,39 @@ export default function New() {
             <Link className="prevPage" to="/packs">
               BACK
             </Link>
-            <button type="submit">SAVE</button>
+            <button type="submit" form="delivery-form">SAVE</button>
           </aside>
         </div>
       </Toolbar>
       <ActionContent>
-        <form id="delivery-form" onSubmit={handleSubmit}>
+        <form id="delivery-form" data={newDeliverData} onSubmit={handleSubmit}>
           <label htmlFor="DeliveryTitle">New Delivery</label>
-          <Select
+          <AsyncSelect
             placeholder="Recipient"
-            DefaultValue={null}
+            loadOptions={(inputValue) => loadRecipients(inputValue)}
+            onChange={(selectedOption) => setRecipientInput(selectedOption.id)}
+            defaultOptions
             name="recipient_id"
-            loadOptions={loadRecipients}
-            getOptionValue={option => option.id}
-            getOptionLabel={option => option.name}
-            onInputChange={s => setRecipientName(s.id)}
-            onChange={o => setRecipientSelected(o.id)}
+            cacheOptions
           />
 
-          <Select
+
+          <AsyncSelect
             placeholder="Deliveryman"
-            DefaultValue={null}
+            loadOptions={(inputValue) => loadDeliverymans(inputValue)}
+            onChange={(selectedOption) => setDmanInput(selectedOption.id)}
+            defaultOptions
             name="deliveryman_id"
-            loadOptions={loadDeliverymans}
-            getOptionValue={option => option.id}
-            getOptionLabel={option => option.name}
-            onInputChange={s => setDeliverymanName(s.id)}
-            onChange={o => setDeliverymanSelected(o.id)}
+            cacheOptions
           />
 
           <input
             className="Product"
             name="product"
             placeholder="Product"
-            value={product}
-            onChange={e => setProduct(e.target.value)}
+            type="text"
+            value={inputProduct}
+            onChange={e => setProductInput(e.target.value)}
           />
         </form>
       </ActionContent>

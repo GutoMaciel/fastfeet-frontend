@@ -7,7 +7,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   height: 64px;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -49,11 +49,11 @@ export const Content = styled.div`
 export const Profile = styled.div`
   display: flex;
   margin-left: 20px;
-  padding-left: 20px;
+  padding-left: 10px;
 
   div {
     text-align: right;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 
     strong {
       display: block;
@@ -65,7 +65,8 @@ export const Profile = styled.div`
       margin-top: 2px;
       line-height: 16px;
       font-size: 12px;
-      color: #de3b3b;
+      color: #7159c1;
+      font-weight: bold;
       background: none;
       border: 0;
     }

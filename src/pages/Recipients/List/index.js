@@ -27,6 +27,20 @@ export default function List() {
     getRecipients();
   }, [name]);
 
+  // async function handleDelete(id) {
+  //   try {
+  //     await api.delete(`/recipient/${id}`);
+
+  //     const updatedList = recipients.filter(recipient => recipient.id != id);
+
+  //     setRecipients(updatedList);
+
+  //     toast.success('Recipient deleted.');
+  //   } catch (err) {
+  //     toast.error(err.response.data.error);
+  //   }
+  //  }
+
   return (
     <>
       <Toolbar>
@@ -57,8 +71,18 @@ export default function List() {
               <tr key={recipient.id}>
                 <td>#{recipient.id}</td>
                 <td>{recipient.name}</td>
-                <td>{recipient.city}</td>
-                <td>...</td>
+                <td>
+                  {recipient.street}, {recipient.number}, {recipient.city},{' '}
+                  {recipient.state}
+                </td>
+                <td>
+                  <Link to={`recipient/edit/${recipient.id}`}>Edit</Link>
+                </td>
+                {/* <td>
+                  <button type="button" onClick={() => handleDelete(recipient.id)}>
+                    Delete
+                  </button>
+                </td> */}
               </tr>
             ))}
           </tbody>
