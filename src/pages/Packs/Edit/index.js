@@ -107,6 +107,12 @@ export default function Edit() {
     product: inputProduct,
   };
 
+  // const customStyles = {
+  //   input: () => ({
+  //     margin: 10,
+  //   }),
+  // };
+
   return (
     <>
       <Toolbar>
@@ -126,8 +132,10 @@ export default function Edit() {
           initialData={deliveryData}
           data={newDeliverData}
           onSubmit={handleSubmit}>
-            <label htmlFor="DeliveryTitle">New Delivery</label>
+            <label htmlFor="DeliveryTitle">Edit Delivery</label>
+            <div className="selectInput">
             <AsyncSelect
+              // styles={customStyles}
               placeholder="Recipient"
               loadOptions={(inputValue) => loadRecipients(inputValue)}
               onChange={(selectedOption) => setRecipientInput(selectedOption.id)}
@@ -135,9 +143,11 @@ export default function Edit() {
               name="recipient_id"
               cacheOptions
             />
+            </div>
 
-
+            <div className="selectInput">
             <AsyncSelect
+              // styles={customStyles}
               placeholder="Deliveryman"
               loadOptions={(inputValue) => loadDeliverymans(inputValue)}
               onChange={(selectedOption) => setDmanInput(selectedOption.id)}
@@ -145,7 +155,9 @@ export default function Edit() {
               name="deliveryman_id"
               cacheOptions
             />
+            </div>
 
+            <div className="selectInput">
             <input
               className="Product"
               name="product"
@@ -154,6 +166,7 @@ export default function Edit() {
               value={inputProduct}
               onChange={e => setProductInput(e.target.value)}
             />
+            </div>
         </form>
       </ActionContent>
     </>

@@ -34,6 +34,11 @@ export const Content = styled.div`
       padding: 10px;
       border-radius: 4px;
       padding: 10px 15px;
+      /* margin-top: 5px; */
+    }
+
+    .selectInput {
+      margin-top: 10px;
     }
     select {
       border: 1px solid rgba(0, 0, 0, 0.2);
